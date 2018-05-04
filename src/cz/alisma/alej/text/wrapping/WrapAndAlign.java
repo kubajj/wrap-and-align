@@ -27,22 +27,66 @@ package cz.alisma.alej.text.wrapping;
 import java.util.Scanner;
 
 public class WrapAndAlign {
-    private static final int MAX_WIDTH = 50;
+	public static void main(String[] args) {
+		int maxwidth = 0;
+		Scanner input = new Scanner(System.in);
+		ParagraphDetector pd = new ParagraphDetector(input);
+		Aligner aligner = null;
+		for (int i = 0; i < args.length; i++) {
+			String position = args[i];
+			String [] positions = new String[2];
+			positions = position.split("=");
+			switch (positions[0]) {
+			case "--left":
+				aligner = new LeftAligner();
+				break;
+			case "--right":
+				aligner = new RigthAligner();
+				break;
+			case "--center":
+				aligner = new CenterAligner();
+				break;
+			case "--centre":
+				aligner = new CenterAligner();
+				break;
+			case "--justify":
+				aligner = new JustifyAligner();
+				break;
+			case "-w":
+				if (i + 1 == args.length) {
+					System.out.println("You did not write a number after -w.");
+					return;
+				}
+				maxwidth = Integer.parseInt(args[i + 1]);
+				i++;
+				break;
+			case "--width":
+				maxwidth = Integer.parseInt(positions[1]);
+				break;
+			default: 
+				continue;
+			}
+			
+		}/*
+		switch (args[1].length()) {
+		case 2:
+			maxwidth = Integer.parseInt(args[2]);
+			break;
+		default:
+			String[] deleni = args[1].split("=");
+			maxwidth = Integer.parseInt(deleni[2]);
+			break;
+		}*/
 
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        ParagraphDetector pd = new ParagraphDetector(input);
-        Aligner aligner = new LeftAligner();
-
-        while (pd.hasNextParagraph()) {
-            Paragraph para = pd.nextParagraph();
-            LinePrinter line = new LinePrinter(System.out, MAX_WIDTH, aligner);
-            while (para.hasNextWord()) {
-                String word = para.nextWord();
-                line.addWord(word);
-            }
-            line.flush();
-            System.out.println();
-        }
-    }
+		while (pd.hasNextParagraph()) {
+			Paragraph para = pd.nextParagraph();
+			LinePrinter line = new LinePrinter(System.out, maxwidth, aligner);
+			while (para.hasNextWord()) {
+				String word = para.nextWord();
+				line.addWord(word);
+			}
+			line.flush();
+			System.out.println();
+		}
+	}
 }

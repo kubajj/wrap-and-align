@@ -30,9 +30,8 @@ import java.util.List;
 public class LeftAligner implements Aligner {
 
     @Override
-    public String format(List<String> words) {
-        StringBuilder result = new StringBuilder();
-        
+    public String format(List<String> words, int widthofline, int width) {
+        StringBuilder result = new StringBuilder();        
         boolean first = true;
         for (String w : words) {
             if (!first) {

@@ -60,21 +60,23 @@ public class LinePrinter {
     public void flush() {
         int lengthSoFar = -1;
         List<String> line = new ArrayList<>();
+        int widthofline = 0;
         
         for (String word : words) {
-            if (lengthSoFar + 1 + word.length() > width) {
-                output.println(aligner.format(line));
+            if (lengthSoFar + 1 + word.length() > width) {                
+				output.println(aligner.format(line, widthofline, width));
                 line.clear();
                 lengthSoFar = -1;
             } else {
                 lengthSoFar++;
+                widthofline += word.length();
             }
             line.add(word);
             lengthSoFar += word.length();
         }
         
         if (!line.isEmpty()) {
-            output.println(aligner.format(line));
+            output.println(aligner.format(line, widthofline, width));
         }
     }
 
