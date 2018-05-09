@@ -8,7 +8,9 @@ public class JustifyAligner implements Aligner {
 		StringBuilder result = new StringBuilder();	
 		int number = words.size();
 		int gaps = width - widthofline;
-		int gapsbetweentwo = gaps / (number - 1);		
+		int gapsbetweentwo = 0;
+		int onemore = gaps % (number - 1);		
+		gapsbetweentwo = (gaps - (onemore))/ (number - 1);		
 		boolean first = true;
 		int position = 1;
         for (String w : words) {        	
@@ -18,9 +20,14 @@ public class JustifyAligner implements Aligner {
                 first = false;
             }
             result.append(w);
-            if (!(position == number - 1)) {
+            if (!(position == number)) {
             	result.append(Repeat.repeat(' ', gapsbetweentwo));
         	}
+            position++;
+            if (onemore > 0) {
+            	result.append(" ");
+            	onemore--;
+            }
         }
 		return result.toString();
 	}

@@ -31,7 +31,8 @@ public interface Aligner {
     /** Format one line.
      * 
      * @param words List of words on the line.
-     * @param widthofline 
+     * @param widthofline
+     * @param width
      * @return Formatted line.
      */
    public String format(List<String> line, int widthofline, int width);	
