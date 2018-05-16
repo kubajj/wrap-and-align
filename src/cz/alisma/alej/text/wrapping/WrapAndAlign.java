@@ -64,20 +64,13 @@ public class WrapAndAlign {
 				maxwidth = Integer.parseInt(positions[1]);
 				break;
 			default: 
+				aligner = new LeftAligner();
+				maxwidth = 0;
 				continue;
 			}
 			
-		}/*
-		switch (args[1].length()) {
-		case 2:
-			maxwidth = Integer.parseInt(args[2]);
-			break;
-		default:
-			String[] deleni = args[1].split("=");
-			maxwidth = Integer.parseInt(deleni[2]);
-			break;
-		}*/
-
+		}
+		
 		while (pd.hasNextParagraph()) {
 			Paragraph para = pd.nextParagraph();
 			LinePrinter line = new LinePrinter(System.out, maxwidth, aligner);
