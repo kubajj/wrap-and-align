@@ -22,55 +22,48 @@
  * SOFTWARE.
  */
 
-package cz.alisma.alej.text.wrapping;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
-/** Detects paragraph breaks in the input. */
-public class ParagraphDetector {
-    private Scanner input;
-    private Paragraph nextPara;
+/** Paragraph of text. */
+public class Paragraph {
+    private Scanner words;
+    private String content;
 
-    /** Constructs the detector above a scanner.
+    /** Constructs the paragraph from list of lines.
      * 
-     * @param inp Initialized scanner to be used for reading the input.
+     * @param lines Lines composing the paragraph.
      */
-    public ParagraphDetector(Scanner inp) {
-        input = inp;
+    public Paragraph(List<String> lines) {
+        StringBuilder builder = new StringBuilder();
+        for (String line : lines) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        content = builder.toString();
+        words = new Scanner(content);
     }
 
-    /** Tells whether there is another paragraph not yet read in the input. */
-    public boolean hasNextParagraph() {
-        String line = "";
-        while (input.hasNextLine()) {
-            line = input.nextLine();
-            if (!line.isEmpty()) {
-                break;
-            }
-        }
-        if (line.isEmpty()) {
-            return false;
-        }
-
-        List<String> lines = new ArrayList<>();
-        lines.add(line);
-
-        while (input.hasNextLine()) {
-            line = input.nextLine();
-            if (line.isEmpty()) {
-                break;
-            }
-            lines.add(line);
-        }
-
-        nextPara = new Paragraph(lines);
-        return true;
+    /** Tells whether there is another word not yet read in the paragraph. */
+    public boolean hasNextWord() {
+        return words.hasNext();
     }
-    
-    /** Get the next paragraph from the input. */
-    public Paragraph nextParagraph() {
-        return nextPara;
+
+    /** Get the next word from the paragraph.
+     * 
+     * @return Next word.
+     */
+    public String nextWord() {
+        return words.next();
+    }
+
+    /** Debugging only: get content as a string.
+     *
+     * @return Whole paragraph content.
+     */
+    public String getContent() {
+        return content;
     }
 }

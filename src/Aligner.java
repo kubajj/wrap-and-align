@@ -22,48 +22,17 @@
  * SOFTWARE.
  */
 
-package cz.alisma.alej.text.wrapping;
+
 
 import java.util.List;
-import java.util.Scanner;
 
-/** Paragraph of text. */
-public class Paragraph {
-    private Scanner words;
-    private String content;
-
-    /** Constructs the paragraph from list of lines.
-     * 
-     * @param lines Lines composing the paragraph.
+/** Aligns text in a line. */
+public interface Aligner {    
+    /** Format one line.     * 
+     * @param words List of words on the line.
+     * @param widthofline
+     * @param width
+     * @return Formatted line.
      */
-    public Paragraph(List<String> lines) {
-        StringBuilder builder = new StringBuilder();
-        for (String line : lines) {
-            builder.append(line);
-            builder.append("\n");
-        }
-        content = builder.toString();
-        words = new Scanner(content);
-    }
-
-    /** Tells whether there is another word not yet read in the paragraph. */
-    public boolean hasNextWord() {
-        return words.hasNext();
-    }
-
-    /** Get the next word from the paragraph.
-     * 
-     * @return Next word.
-     */
-    public String nextWord() {
-        return words.next();
-    }
-
-    /** Debugging only: get content as a string.
-     *
-     * @return Whole paragraph content.
-     */
-    public String getContent() {
-        return content;
-    }
+   public String format(List<String> line, int widthofline, int width);	
 }

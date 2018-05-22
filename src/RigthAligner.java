@@ -1,4 +1,4 @@
-package cz.alisma.alej.text.wrapping;
+
 
 import java.util.List;
 
