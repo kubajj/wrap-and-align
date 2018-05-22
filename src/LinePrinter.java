@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package cz.alisma.alej.text.wrapping;
+
 
 import java.io.PrintStream;
 import java.util.ArrayList;

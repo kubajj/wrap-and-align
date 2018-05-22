@@ -1,4 +1,4 @@
-package cz.alisma.alej.text.wrapping;
+
 
 import java.util.List;
 
@@ -9,8 +9,14 @@ public class JustifyAligner implements Aligner {
 		int number = words.size();
 		int gaps = width - widthofline;
 		int gapsbetweentwo = 0;
-		int onemore = gaps % (number - 1);		
-		gapsbetweentwo = (gaps - (onemore))/ (number - 1);		
+		int onemore = 0;
+		if (number > 1) {
+			onemore = gaps % (number - 1);		
+			gapsbetweentwo = (gaps - (onemore))/ (number - 1);		
+		} else {
+			onemore = 0;
+						
+		}
 		boolean first = true;
 		int position = 1;
         for (String w : words) {        	

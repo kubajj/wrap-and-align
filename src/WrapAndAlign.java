@@ -22,16 +22,15 @@
  * SOFTWARE.
  */
 
-package cz.alisma.alej.text.wrapping;
+
 
 import java.util.HashMap;
 import java.util.Scanner;
 
+
 public class WrapAndAlign {
 	public static void main(String[] args) {
-		int maxwidth = 0;
-		Scanner input = new Scanner(System.in);
-		ParagraphDetector pd = new ParagraphDetector(input);
+		int maxwidth = 0;		
 		Aligner aligner = null;
 		for (int i = 0; i < args.length; i++) {
 			String position = args[i];
@@ -66,12 +65,15 @@ public class WrapAndAlign {
 				break;
 			default: 
 				aligner = new LeftAligner();
-				maxwidth = 0;
+				maxwidth = 60;
 				continue;
 			}
 			HashMap<String, String> settings = new HashMap<>();
 			settings.put(positions[0], positions[1]);
 		}
+		
+		Scanner input = new Scanner(System.in);
+		ParagraphDetector pd = new ParagraphDetector(input);
 		
 		while (pd.hasNextParagraph()) {
 			Paragraph para = pd.nextParagraph();
