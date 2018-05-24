@@ -67,6 +67,7 @@ public class LinePrinter {
 				output.println(aligner.format(line, widthofline, width));
                 line.clear();
                 lengthSoFar = -1;
+                widthofline = 0;
             } else {
                 lengthSoFar++;
                 widthofline += word.length();
