@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package cz.alisma.alej.text.wrapping;
+
 
 import org.junit.After;
 import org.junit.Before;
