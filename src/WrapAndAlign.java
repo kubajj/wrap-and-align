@@ -29,6 +29,9 @@ import java.util.Scanner;
 
 
 public class WrapAndAlign {
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_RESET = "\u001B[0m";
+	
 	public static void main(String[] args) {
 		int maxwidth = 60;		
 		Aligner aligner = new LeftAligner();
@@ -64,7 +67,7 @@ public class WrapAndAlign {
 				maxwidth = Integer.parseInt(positions[1]);
 				break;
 			default: 
-				System.out.printf("Unknown argumet %s.", position);
+				System.out.printf(ANSI_RED +"\n\nUnknown argumet %s. Try a different argument or to correct the typo…\n\n\n" + ANSI_RESET, position);
 				continue;
 			}
 		}

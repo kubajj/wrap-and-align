@@ -17,6 +17,7 @@ public class RigthAligner implements Aligner {
             }
             result.append(w);
         }
+        //result.append("|");
 		return result.toString();
 	}
 

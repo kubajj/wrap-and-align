@@ -8,7 +8,7 @@ public class CenterAligner implements Aligner {
 	public String format(List<String> words, int widthofline, int width) {
 		StringBuilder result = new StringBuilder();	
 		int difference = width - widthofline;
-		int gaps = (difference/ 2) - (difference % 2);
+		int gaps = (difference - (difference % 2)) / 2;
 		result.append(Repeat.repeat(' ', gaps));
 		boolean first = true;
         for (String w : words) {
@@ -19,6 +19,11 @@ public class CenterAligner implements Aligner {
             }
             result.append(w);
         }
+        /*if (difference % 2 == 0) {
+        	result.append(Repeat.repeat(' ', gaps) + "|");
+        } else {
+        	result.append(Repeat.repeat(' ', gaps + 1) + "|");
+        }*/
 		return result.toString();
 	}
 

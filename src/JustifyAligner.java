@@ -35,6 +35,7 @@ public class JustifyAligner implements Aligner {
             	onemore--;
             }
         }
+        //result.append("|");
 		return result.toString();
 	}
 

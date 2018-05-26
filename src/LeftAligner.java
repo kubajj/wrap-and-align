@@ -41,7 +41,7 @@ public class LeftAligner implements Aligner {
             }
             result.append(w);
         }
-        
+        //result.append(Repeat.repeat(' ', width - widthofline) + ("|"));
         return result.toString();
     }
 
