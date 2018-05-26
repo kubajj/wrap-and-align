@@ -30,8 +30,8 @@ import java.util.Scanner;
 
 public class WrapAndAlign {
 	public static void main(String[] args) {
-		int maxwidth = 0;		
-		Aligner aligner = null;
+		int maxwidth = 60;		
+		Aligner aligner = new LeftAligner();
 		for (int i = 0; i < args.length; i++) {
 			String position = args[i];
 			String [] positions = new String[2];
@@ -64,12 +64,9 @@ public class WrapAndAlign {
 				maxwidth = Integer.parseInt(positions[1]);
 				break;
 			default: 
-				aligner = new LeftAligner();
-				maxwidth = 60;
+				System.out.printf("Unknown argumet %s.", position);
 				continue;
 			}
-			HashMap<String, String> settings = new HashMap<>();
-			settings.put(positions[0], positions[1]);
 		}
 		
 		Scanner input = new Scanner(System.in);

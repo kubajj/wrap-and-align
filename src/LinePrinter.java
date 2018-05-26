@@ -60,24 +60,27 @@ public class LinePrinter {
     public void flush() {
         int lengthSoFar = -1;
         List<String> line = new ArrayList<>();
-        int widthofline = 0;
+        int widthofline = -1;
         
         for (String word : words) {
             if (lengthSoFar + 1 + word.length() > width) {                
-				output.println(aligner.format(line, widthofline, width));
+				output.print("|" + aligner.format(line, widthofline, width));
+				System.out.printf("         %d - %d = %d\n", width, widthofline, width - widthofline);	
                 line.clear();
                 lengthSoFar = -1;
-                widthofline = 0;
+                widthofline = -1;
             } else {
                 lengthSoFar++;
-                widthofline += word.length();
+                widthofline++;
             }
             line.add(word);
             lengthSoFar += word.length();
+            widthofline += word.length();
         }
         
         if (!line.isEmpty()) {
-            output.println(aligner.format(line, widthofline, width));
+            output.print("|" + aligner.format(line, widthofline, width));
+            System.out.printf("         %d - %d = %d\n", width, widthofline, width - widthofline);
         }
     }
 
