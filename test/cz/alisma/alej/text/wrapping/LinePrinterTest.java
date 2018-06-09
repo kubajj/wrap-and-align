@@ -22,17 +22,22 @@
  * SOFTWARE.
  */
 package cz.alisma.alej.text.wrapping;
-
+ 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintStream;
+import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class LinePrinterTest {
 	private static class TestingAligner implements Aligner {

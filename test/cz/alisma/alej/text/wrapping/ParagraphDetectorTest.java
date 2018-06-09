@@ -21,9 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package cz.alisma.alej.text.wrapping;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import java.util.Scanner;

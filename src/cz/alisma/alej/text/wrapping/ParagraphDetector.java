@@ -22,48 +22,55 @@
  * SOFTWARE.
  */
 
+package cz.alisma.alej.text.wrapping;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/** Paragraph of text. */
-public class Paragraph {
-    private Scanner words;
-    private String content;
+/** Detects paragraph breaks in the input. */
+public class ParagraphDetector {
+    private Scanner input;
+    private Paragraph nextPara;
 
-    /** Constructs the paragraph from list of lines.
+    /** Constructs the detector above a scanner.
      * 
-     * @param lines Lines composing the paragraph.
+     * @param inp Initialized scanner to be used for reading the input.
      */
-    public Paragraph(List<String> lines) {
-        StringBuilder builder = new StringBuilder();
-        for (String line : lines) {
-            builder.append(line);
-            builder.append("\n");
+    public ParagraphDetector(Scanner inp) {
+        input = inp;
+    }
+
+    /** Tells whether there is another paragraph not yet read in the input. */
+    public boolean hasNextParagraph() {
+        String line = "";
+        while (input.hasNextLine()) {
+            line = input.nextLine();
+            if (!line.isEmpty()) {
+                break;
+            }
         }
-        content = builder.toString();
-        words = new Scanner(content);
-    }
+        if (line.isEmpty()) {
+            return false;
+        }
 
-    /** Tells whether there is another word not yet read in the paragraph. */
-    public boolean hasNextWord() {
-        return words.hasNext();
-    }
+        List<String> lines = new ArrayList<>();
+        lines.add(line);
 
-    /** Get the next word from the paragraph.
-     * 
-     * @return Next word.
-     */
-    public String nextWord() {
-        return words.next();
-    }
+        while (input.hasNextLine()) {
+            line = input.nextLine();
+            if (line.isEmpty()) {
+                break;
+            }
+            lines.add(line);
+        }
 
-    /** Debugging only: get content as a string.
-     *
-     * @return Whole paragraph content.
-     */
-    public String getContent() {
-        return content;
+        nextPara = new Paragraph(lines);
+        return true;
+    }
+    
+    /** Get the next paragraph from the input. */
+    public Paragraph nextParagraph() {
+        return nextPara;
     }
 }

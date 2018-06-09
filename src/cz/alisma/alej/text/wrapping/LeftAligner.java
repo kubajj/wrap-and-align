@@ -22,17 +22,27 @@
  * SOFTWARE.
  */
 
-
+package cz.alisma.alej.text.wrapping;
 
 import java.util.List;
 
-/** Aligns text in a line. */
-public interface Aligner {    
-    /** Format one line.     * 
-     * @param words List of words on the line.
-     * @param widthofline
-     * @param width
-     * @return Formatted line.
-     */
-   public String format(List<String> line, int widthofline, int width);	
+/** Left-aligns a line. */
+public class LeftAligner implements Aligner {
+
+    @Override
+    public String format(List<String> words, int widthofline, int width) {
+        StringBuilder result = new StringBuilder();        
+        boolean first = true;
+        for (String w : words) {
+            if (!first) {
+                result.append(" ");
+            } else {
+                first = false;
+            }
+            result.append(w);
+        }
+        //result.append(Repeat.repeat(' ', width - widthofline) + ("|"));
+        return result.toString();
+    }
+
 }

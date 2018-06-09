@@ -23,7 +23,7 @@
  */
 
 
-
+package cz.alisma.alej.text.wrapping;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class LinePrinter {
             if (lengthSoFar + 1 + word.length() > width) {    
             	//output.print("|");
 				output.print(aligner.format(line, widthofline, width));				
-				//System.out.printf(Repeat.repeat(' ', 10) + "%d - %d = %d\n", width, widthofline, width - widthofline);	
+				//output.printf(Repeat.repeat(' ', 10) + "%d - %d = %d", width, widthofline, width - widthofline);	
 				output.println();
                 line.clear();
                 lengthSoFar = -1;
@@ -84,7 +84,7 @@ public class LinePrinter {
         if (!line.isEmpty()) {
         	//output.print("|");
             output.print(aligner.format(line, widthofline, width));
-            //System.out.printf(Repeat.repeat(' ', 10) + "%d - %d = %d\n", width, widthofline, width - widthofline);
+            //output.printf(Repeat.repeat(' ', 10) + "%d - %d = %d", width, widthofline, width - widthofline);
             output.println();
         }
     }
