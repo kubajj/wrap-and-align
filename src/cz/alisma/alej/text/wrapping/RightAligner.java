@@ -2,7 +2,7 @@ package cz.alisma.alej.text.wrapping;
 
 import java.util.List;
 
-public class RigthAligner implements Aligner {
+public class RightAligner implements Aligner {
 
 	@Override
 	public String format(List<String> words, int widthofline, int width) {

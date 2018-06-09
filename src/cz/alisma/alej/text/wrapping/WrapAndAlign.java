@@ -44,7 +44,7 @@ public class WrapAndAlign {
 				aligner = new LeftAligner();
 				break;
 			case "--right":
-				aligner = new RigthAligner();
+				aligner = new RightAligner();
 				break;
 			case "--center":
 				aligner = new CenterAligner();
